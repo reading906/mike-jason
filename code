@@ -1,0 +1,22 @@
+void setup() {
+Serial.begin(9600);//初始化波特率
+pinMode(8,OUTPUT);//定义该引脚为输出模式
+pinMode(2,OUTPUT);
+digitalWrite(8,LOW);//初始化引脚为低电平输出
+digitalWrite(2,LOW);
+
+}
+
+void loop() {
+int value=analogRead(A0);//读取A0口模拟量值
+Serial.print("water=");//打印字符Rain=
+Serial.println(value);//打印模拟值
+if(value>570)//如果模拟值小于300，将8引脚输出为高电平；否则将8引脚输出为低电平
+{  for(int i=0;i<200;i++){
+    tone(8, 1000, 200);}
+   digitalWrite(2,LOW);}
+else{digitalWrite(8,LOW);
+digitalWrite(2,HIGH);
+}
+delay(1000);//延时1秒
+}
